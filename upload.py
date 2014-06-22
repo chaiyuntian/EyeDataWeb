@@ -31,6 +31,8 @@ def upload_file():
             file1.save(filepath)
             result = jsonify(calc_return(filepath))
             return result
+        else:
+            return jsonify({"Type": "not xls or xlsx"})
 
 
 from flask import send_from_directory
