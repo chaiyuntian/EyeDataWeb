@@ -9,10 +9,10 @@
 </head>
 <body>
 <div>
-<input type="file" id="file" /><br />
-<input type="button" value="Upload" onclick="sendReq();"/>
+    <input type="file" id="file"/><br/>
+    <input type="button" value="Upload" onclick="sendReq();"/>
 
-<progress id="progressBar" value="0" max="100">
+    <progress id="progressBar" value="0" max="100">
 
     </progress>
 
@@ -30,13 +30,16 @@ AJAX方法为get
 
     //var msger=initChannel(),request,addressInput="/upload",
 
-    var res=document.getElementById('result');
+    var res = document.getElementById('result');
 
-    function sendReq(){
+    function sendReq() {
 
         var fileObj = document.getElementById("file").files[0]; // js 获取文件对象
 
-        if(!fileObj){alert("Please choose file to upload");return;}
+        if (!fileObj) {
+            alert("Please choose file to upload");
+            return;
+        }
 
         // FormData 对象
 
@@ -46,78 +49,78 @@ AJAX方法为get
 
         /*
 
-        if(request)return;
+         if(request)return;
 
-        request=msger.createXHR(addressInput,'post');
+         request=msger.createXHR(addressInput,'post');
 
 
-        request.promise.then(function(r){
-            alert("GET RESPOND!");
-            res.innerHTML=JSON.stringify(r.xhr.response);
-        },function(r){
-            var xhr= r.xhr;
-            res.innerHTML='通讯失败:'+xhr.status+' '+xhr.statusText;
-        }).fin(function(){
-                    request=null;
-                });
+         request.promise.then(function(r){
+         alert("GET RESPOND!");
+         res.innerHTML=JSON.stringify(r.xhr.response);
+         },function(r){
+         var xhr= r.xhr;
+         res.innerHTML='通讯失败:'+xhr.status+' '+xhr.statusText;
+         }).fin(function(){
+         request=null;
+         });
 
-        res.innerHTML='通讯中';
+         res.innerHTML='通讯中';
 
-        request.onload = function () {
+         request.onload = function () {
 
-               alert("上传完成!");
+         alert("上传完成!");
 
          };
 
-        request.upload.addEventListener("progress", progressFunction, false);
+         request.upload.addEventListener("progress", progressFunction, false);
 
 
-        request.send(form);
+         request.send(form);
 
-        */
-            // XMLHttpRequest 对象
+         */
+        // XMLHttpRequest 对象
 
-            var xhr = new XMLHttpRequest();
+        var xhr = new XMLHttpRequest();
 
-            var FileController = "/upload";                    // 接收上传文件的后台地址
+        var FileController = "/upload";                    // 接收上传文件的后台地址
 
-            xhr.open("post", FileController, true);
+        xhr.open("post", FileController, true);
 
-            xhr.onload = function () {
+        xhr.onload = function () {
 
-               alert("上传完成!");
-               res.innerHTML='uploaded';
-               res.innerHTML=JSON.stringify(xhr.response);
+            alert("上传完成!");
+            res.innerHTML = 'uploaded';
+            res.innerHTML = JSON.stringify(xhr.response);
 
-            };
+        };
 
-            xhr.upload.addEventListener("progress", progressFunction, false);
+        xhr.upload.addEventListener("progress", progressFunction, false);
 
 
-            xhr.send(form);
+        xhr.send(form);
 
-            res.innerHTML='通讯中';
+        res.innerHTML = '通讯中';
 
 
     }
 
-      function progressFunction(evt) {
+    function progressFunction(evt) {
 
-            var progressBar = document.getElementById("progressBar");
+        var progressBar = document.getElementById("progressBar");
 
-            var percentageDiv = document.getElementById("percentage");
+        var percentageDiv = document.getElementById("percentage");
 
-            if (evt.lengthComputable) {
+        if (evt.lengthComputable) {
 
-                progressBar.max = evt.total;
+            progressBar.max = evt.total;
 
-                progressBar.value = evt.loaded;
+            progressBar.value = evt.loaded;
 
-                percentageDiv.innerHTML = Math.round(evt.loaded / evt.total * 100) + "%";
-
-            }
+            percentageDiv.innerHTML = Math.round(evt.loaded / evt.total * 100) + "%";
 
         }
+
+    }
 
 
 </script>

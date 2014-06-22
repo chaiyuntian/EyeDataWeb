@@ -19,6 +19,7 @@ def scanPath(x, y):
 
     return path
 
+
 '''total time of scanning'''
 
 
@@ -99,12 +100,13 @@ def AOITrans_P(AOIs):
 
     return trans
 
+
 def AOITrans_P_2(AOIs):
     AOIseq = [0] * len(AOIs[0])
     trans = {}
     for i1 in range(len(AOIs[0])):
         for i2 in range(len(AOIs[0])):
-            trans[str(i1)+','+str(i2)] = 0
+            trans[str(i1) + ',' + str(i2)] = 0
 
     for j in range(len(AOIs)):
         for i in range(len(AOIs[j])):
@@ -116,17 +118,16 @@ def AOITrans_P_2(AOIs):
     trans = {}
     for i1 in range(len(AOIs)):
         for i2 in range(len(AOIs)):
-            trans[str(i1)+','+str(i2)] = 0
+            trans[str(i1) + ',' + str(i2)] = 0
 
     for i in range(len(AOIseq) - 1):
-        trans[str(AOIseq[i])+','+str(AOIseq[i + 1])] += 1
+        trans[str(AOIseq[i]) + ',' + str(AOIseq[i + 1])] += 1
 
     N = len(AOIseq) - 1
     for k in trans.keys():
         trans[k] = trans[k] * 1.0 / N
 
     return trans
-
 
 
 def convex_hull(points):
