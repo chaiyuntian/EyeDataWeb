@@ -44,4 +44,4 @@ def uploaded_file(filename):
 
 ip_address = '127.0.0.1'
 
-app.run(ip_address, 5555, debug=True)
+app.run(ip_address, 5555)
