@@ -2,6 +2,7 @@ import os
 from flask import Flask, request, redirect, url_for, jsonify, render_template
 from werkzeug.utils import secure_filename
 from eyedata.packData import *
+
 import json
 
 UPLOAD_FOLDER = 'static' + os.sep + 'Uploads'
@@ -17,7 +18,7 @@ def allowed_file(filename):
 
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('AjaxTest.html')
+    return render_template('upload.html')
 
 
 @app.route('/upload', methods=['GET', 'POST'])
@@ -30,16 +31,6 @@ def upload_file():
             file1.save(filepath)
             result = jsonify(calc_return(filepath))
             return result
-            #redirect(url_for('uploaded_file',filename=filename))
-
-    '''
-    <!doctype html>
-    <title>Upload new File</title>
-    <h1>Upload new File</h1>
-    <form action="" method=post enctype=multipart/form-data>
-      <p><input type=file name=file>
-         <input type=submit value=Upload>
-    </form> '''
 
 
 from flask import send_from_directory
@@ -51,4 +42,6 @@ def uploaded_file(filename):
                                filename)
 
 
-app.run("192.168.1.104", 5555, debug=True)
+ip_address = '127.0.0.1'
+
+app.run(ip_address, 5555, debug=True)
